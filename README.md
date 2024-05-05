@@ -1,6 +1,6 @@
 # Tiny Tapeout Chip Renders
 
-This repo contains the chip renders for all Tiny Tapeouts shuttles since TT02. Each shuttle includes two renders:
+This repo contains the chip renders for all Tiny Tapeouts shuttles. Each shuttle includes two renders:
 
 - full_gds.png: A full render of the GDS file.
 - logic_density: Shows only the local interconnect layer, which is used to estimate the logic density of the chip.
@@ -35,6 +35,10 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 [![Tiny Tapeout 2](shuttles/tt02/full_gds.png)](shuttles/tt02/full_gds.png)
 
+### Tiny Tapeout 1
+
+[![Tiny Tapeout 1](shuttles/tt01/full_gds.png)](shuttles/tt01/full_gds.png)
+
 ## Logic Density Renders
 
 * [Tiny Tapeout 6](shuttles/tt06/logic_density.png)
@@ -43,7 +47,7 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 * [Tiny Tapeout 03p5](shuttles/tt03p5/logic_density.png)
 * [Tiny Tapeout 3](shuttles/tt03/logic_density.png)
 * [Tiny Tapeout 2](shuttles/tt02/logic_density.png)
-
+* [Tiny Tapeout 1](shuttles/tt01/logic_density.png)
 
 ## Regenerating the renders
 

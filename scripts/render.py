@@ -15,7 +15,7 @@ from typing import List, Optional
 from klayout.lay import LayoutView
 
 # In legacy shuttles, we don't have an OAS file of the complete chip, rather a GDS file with just Tiny Tapeout tiles.
-LEGACY_SHUTTLES = ["tt02", "tt03", "tt03p5"]
+LEGACY_SHUTTLES = ["tt01", "tt02", "tt03", "tt03p5"]
 SCRIPT_DIR = Path(__file__).parent
 
 
@@ -37,6 +37,11 @@ def download_gds(shuttle_id: str) -> Path:
     shuttle = next(
         (shuttle for shuttle in shuttles if shuttle["id"] == shuttle_id), None
     )
+    if shuttle_id == "tt01":
+        # Tiny Tapeout 1 was an experimental shuttle and is not in the main index
+        shuttle = {
+            "gds_url": "https://github.com/TinyTapeout/tinytapeout-02/raw/mpw7/gds/user_project_wrapper.gds.gz"
+        }
     if not shuttle:
         logging.error(f"Shuttle {shuttle_id} not found in the index")
         sys.exit(1)
