@@ -19,6 +19,20 @@ LEGACY_SHUTTLES = ["tt01", "tt02", "tt03", "tt03p5"]
 SCRIPT_DIR = Path(__file__).parent
 
 
+TECHNOLOGIES = {
+    "sky130A": {
+        "boundary": "prBoundary.boundary",
+        "hide_layers": ["areaid.standardc", "areaid.lowTapDensity"],
+        "logic_density_layers": ["li1.drawing", "li1.pin"],
+    },
+    "sg13g2": {
+        "boundary": "EdgeSeal.boundary",
+        "hide_layers": [],
+        "logic_density_layers": ["Via1.drawing", "Via3.drawing"],
+    },
+}
+
+
 def download_gds(shuttle_id: str) -> Path:
     extension = "oas" if shuttle_id not in LEGACY_SHUTTLES else "gds"
     target_path = SCRIPT_DIR / "gds" / f"{shuttle_id}.{extension}"
@@ -41,6 +55,11 @@ def download_gds(shuttle_id: str) -> Path:
         # Tiny Tapeout 1 was an experimental shuttle and is not in the main index
         shuttle = {
             "gds_url": "https://github.com/TinyTapeout/tinytapeout-02/raw/mpw7/gds/user_project_wrapper.gds.gz"
+        }
+    elif shuttle_id == "ttihp0p1":
+        # Tiny Tapeout IHP 0.1 isn't in the main index either, it might be added later
+        shuttle = {
+            "gds_url": "https://github.com/TinyTapeout/tinytapeout-ihp-0p1/releases/download/final/tinytapeout-ihp-0p1.gds"
         }
     if not shuttle:
         logging.error(f"Shuttle {shuttle_id} not found in the index")
@@ -66,15 +85,16 @@ def render_gds(
     gds_path: str,
     output_path: str,
     scale: float = 1.0,
+    tech: str = "sky130A",
     only_layers: Optional[List[str]] = None,
     hide_layers: Optional[List[str]] = None,
 ):
-    BOUNDARY_LAYER = "prBoundary.boundary"
+    BOUNDARY_LAYER = TECHNOLOGIES[tech]["boundary"]
 
     lv = LayoutView()
     lv.load_layout(gds_path)
     lv.max_hier()
-    lv.load_layer_props(SCRIPT_DIR / "lyp/sky130A.lyp")
+    lv.load_layer_props(SCRIPT_DIR / "lyp" / f"{tech}.lyp")
     lv.set_config("background-color", "#ffffff")
     lv.set_config("grid-visible", "false")
     lv.set_config("text-visible", "false")
@@ -82,7 +102,9 @@ def render_gds(
 
     bbox = None
     for layer in lv.each_layer():
-        layer_name = layer.name.split("-")[0].strip() if "-" in layer.name else ""
+        layer_name = layer.name
+        if tech == "sky130A":
+            layer_name = layer_name.split("-")[0].strip() if "-" in layer_name else ""
         if layer_name == BOUNDARY_LAYER:
             bbox = layer.bbox()
             layer.visible = True
@@ -106,20 +128,25 @@ def main(shuttle_id: str, scale: float = 1.0):
     png_dir = SCRIPT_DIR / ".." / "shuttles" / shuttle_id
     png_dir.mkdir(parents=True, exist_ok=True)
 
+    tech = "sg13g2" if shuttle_id.startswith("ttihp") else "sky130A"
+    tech_info = TECHNOLOGIES[tech]
+
     logging.info(f"Rendering {png_dir / 'full_gds.png'}")
     render_gds(
         gds_file,
         png_dir / "full_gds.png",
         scale=scale,
-        hide_layers=["areaid.standardc", "areaid.lowTapDensity"],
+        tech=tech,
+        hide_layers=tech_info["hide_layers"],
     )
 
     logging.info(f"Rendering {png_dir / 'logic_density.png'}")
     render_gds(
         gds_file,
         png_dir / "logic_density.png",
+        tech=tech,
         scale=scale,
-        only_layers=["li1.drawing", "li1.pin"],
+        only_layers=tech_info["logic_density_layers"],
     )
 
 
