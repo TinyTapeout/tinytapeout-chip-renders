@@ -11,6 +11,10 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 ## Full Renders
 
+### Tiny Tapeout 8
+
+[![Tiny Tapeout 8](shuttles/tt08/full_gds.png)](shuttles/tt08/full_gds.png)
+
 ### Tiny Tapeout IHP 0p1
 
 [![Tiny Tapeout IHP 0p1](shuttles/ttihp0p1/full_gds.png)](shuttles/ttihp0p1/full_gds.png)
