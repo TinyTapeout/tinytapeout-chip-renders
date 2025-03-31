@@ -27,7 +27,7 @@ TECHNOLOGIES = {
     },
     "sg13g2": {
         "boundary": "EdgeSeal.boundary",
-        "hide_layers": [],
+        "hide_layers": ["TopMetal2.nofill", "prBoundary.boundary"],
         "logic_density_layers": ["Via1.drawing", "Via3.drawing"],
     },
 }
