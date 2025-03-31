@@ -56,11 +56,6 @@ def download_gds(shuttle_id: str) -> Path:
         shuttle = {
             "gds_url": "https://github.com/TinyTapeout/tinytapeout-02/raw/mpw7/gds/user_project_wrapper.gds.gz"
         }
-    elif shuttle_id == "ttihp0p1":
-        # Tiny Tapeout IHP 0.1 isn't in the main index either, it might be added later
-        shuttle = {
-            "gds_url": "https://github.com/TinyTapeout/tinytapeout-ihp-0p1/releases/download/final/tinytapeout-ihp-0p1.gds"
-        }
     if not shuttle:
         logging.error(f"Shuttle {shuttle_id} not found in the index")
         sys.exit(1)
