@@ -1,15 +1,20 @@
 # Tiny Tapeout Chip Renders
 
-This repo contains the chip renders for all Tiny Tapeouts shuttles. Each shuttle includes two renders:
+This repo contains the chip renders for all Tiny Tapeouts shuttles. Each shuttle includes up to three renders:
 
 - full_gds.png: A full render of the GDS file.
 - logic_density: Shows only the local interconnect layer, which is used to estimate the logic density of the chip.
+- top_metal.png: Shows only the top metal 1/2 layers (IHP shuttles only).
 
 For Tiny Tapeout 4 and later, the renders include the complete chip area, including the pads, and the caravel harness. For earlier shuttles, the renders only include the core area.
 
 The renders are generated using the [render.py](scripts/render.py) script, which uses [klayout](https://www.klayout.org/) to render the GDS files. See [below](#regenerating-the-renders) for instructions on how to regenerate the renders.
 
 ## Full Renders
+
+### Tiny Tapeout IHP 25a
+
+[![Tiny Tapeout IHP 25a](shuttles/ttihp25a/full_gds.png)](shuttles/ttihp25a/full_gds.png)
 
 ### Tiny Tapeout 9
 
@@ -63,10 +68,16 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 [![Tiny Tapeout 1](shuttles/tt01/full_gds.png)](shuttles/tt01/full_gds.png)
 
+## Top Metal Renders
+
+* [Tiny Tapeout IHP 25a](shuttles/ttihp25a/top_metal.png)
+* [Tiny Tapeout IHP 0p2](shuttles/ttihp0p2/top_metal.png)
+
 ## Logic Density Renders
 
+* [Tiny Tapeout IHP 25a](shuttles/ttihp25a/logic_density.png)
 * [Tiny Tapeout 9](shuttles/tt09/logic_density.png)
-* [Tiny Tapeout IHP 0p2](shuttles/ttihp0p1/logic_density.png)
+* [Tiny Tapeout IHP 0p2](shuttles/ttihp0p2/logic_density.png)
 * [Tiny Tapeout 8](shuttles/tt08/logic_density.png)
 * [Tiny Tapeout IHP 0p1](shuttles/ttihp0p1/logic_density.png)
 * [Tiny Tapeout 7](shuttles/tt07/logic_density.png)
