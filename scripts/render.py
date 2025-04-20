@@ -144,6 +144,23 @@ def main(shuttle_id: str, scale: float = 1.0):
         only_layers=tech_info["logic_density_layers"],
     )
 
+    if tech == "sg13g2":
+        logging.info(f"Rendering {png_dir / 'top_metal.png'}")
+        render_gds(
+            gds_file,
+            png_dir / "top_metal.png",
+            scale=scale,
+            tech=tech,
+            only_layers=[
+                "Cont.drawing",
+                "Cont.filler",
+                "TopMetal1.drawing",
+                "TopMetal1.filler",
+                "TopMetal2.drawing",
+                "TopMetal2.filler",
+            ],
+        )
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Update shuttle index")
