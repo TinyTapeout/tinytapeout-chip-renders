@@ -30,6 +30,21 @@ TECHNOLOGIES = {
         "hide_layers": ["TopMetal2.nofill", "prBoundary.boundary"],
         "logic_density_layers": ["Via1.drawing", "Via3.drawing"],
     },
+    "gf180mcuD": {
+        "boundary": "PR_bndry",
+        "hide_layers": [
+            "COMP_Dummy",
+            "Poly2_Dummy",
+            "Metal1_Dummy",
+            "Metal2_Dummy",
+            "Metal3_Dummy",
+            "Metal4_Dummy",
+            "Metal5_Dummy",
+            "PMNDMY",
+            "V5_XTOR",
+        ],
+        "logic_density_layers": ["Contact", "Via1"],
+    },
 }
 
 
@@ -97,12 +112,22 @@ def render_gds(
 
     bbox = None
     for layer in lv.each_layer():
-        layer_name = layer.name
+        # NOTE: the "name" keys in gf180mcuD.lyp are empty! therefore we cannot use layer.name to get the name
+        #       instead, they have populated the "source" key, so we check here and use the appropriate call
+        if tech == "gf180mcuD":
+            # layer.source = "PR_bndry 0/0@1" (example)
+            # we are only interested in the name
+            layer_name = layer.source.split()[0]
+        else:
+            layer_name = layer.name
+
         if tech == "sky130A":
             layer_name = layer_name.split("-")[0].strip() if "-" in layer_name else ""
+
         if layer_name == BOUNDARY_LAYER:
             bbox = layer.bbox()
-            layer.visible = True
+            # NOTE: hide the boundary just for gf180mcuD because it's a bright yellow blob that obscures everything else
+            layer.visible = True if tech != "gf180mcuD" else False
         elif only_layers is not None:
             layer.visible = layer_name in only_layers
         elif hide_layers is not None:
@@ -123,7 +148,13 @@ def main(shuttle_id: str, scale: float = 1.0):
     png_dir = SCRIPT_DIR / ".." / "shuttles" / shuttle_id
     png_dir.mkdir(parents=True, exist_ok=True)
 
-    tech = "ihp-sg13g2" if shuttle_id.startswith("ttihp") else "sky130A"
+    if shuttle_id.startswith("ttihp"):
+        tech = "ihp-sg13g2"
+    elif shuttle_id.startswith("ttgf"):
+        tech = "gf180mcuD"
+    else:
+        tech = "sky130A"
+
     tech_info = TECHNOLOGIES[tech]
 
     logging.info(f"Rendering {png_dir / 'full_gds.png'}")
