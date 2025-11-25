@@ -25,7 +25,7 @@ TECHNOLOGIES = {
         "hide_layers": ["areaid.standardc", "areaid.lowTapDensity"],
         "logic_density_layers": ["li1.drawing", "li1.pin"],
     },
-    "sg13g2": {
+    "ihp-sg13g2": {
         "boundary": "EdgeSeal.boundary",
         "hide_layers": ["TopMetal2.nofill", "prBoundary.boundary"],
         "logic_density_layers": ["Via1.drawing", "Via3.drawing"],
@@ -123,7 +123,7 @@ def main(shuttle_id: str, scale: float = 1.0):
     png_dir = SCRIPT_DIR / ".." / "shuttles" / shuttle_id
     png_dir.mkdir(parents=True, exist_ok=True)
 
-    tech = "sg13g2" if shuttle_id.startswith("ttihp") else "sky130A"
+    tech = "ihp-sg13g2" if shuttle_id.startswith("ttihp") else "sky130A"
     tech_info = TECHNOLOGIES[tech]
 
     logging.info(f"Rendering {png_dir / 'full_gds.png'}")
@@ -144,7 +144,7 @@ def main(shuttle_id: str, scale: float = 1.0):
         only_layers=tech_info["logic_density_layers"],
     )
 
-    if tech == "sg13g2":
+    if tech == "ihp-sg13g2":
         logging.info(f"Rendering {png_dir / 'top_metal.png'}")
         render_gds(
             gds_file,
