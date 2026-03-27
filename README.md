@@ -12,6 +12,9 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 ## Full Renders
 
+### Tiny Tapeout IHP 26a
+[![Tiny Tapeout IHP 26a](shuttles/ttihp26a/full_gds.png)](shuttles/ttihp26a/full_gds.png)
+
 ### Tiny Tapeout GF 0p2
 [![Tiny Tapeout GF 0.2](shuttles/ttgf0p2/full_gds.png)](shuttles/ttgf0p2/full_gds.png)
 
@@ -94,12 +97,14 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 ## Top Metal Renders
 
+* [Tiny Tapeout IHP 26a](shuttles/ttihp26a/top_metal.png)
 * [Tiny Tapeout IHP 0p3](shuttles/ttihp0p3/top_metal.png)
 * [Tiny Tapeout IHP 25a](shuttles/ttihp25a/top_metal.png)
 * [Tiny Tapeout IHP 0p2](shuttles/ttihp0p2/top_metal.png)
 
 ## Logic Density Renders
 
+* [Tiny Tapeout IHP 26a](shuttles/ttihp26a/logic_density.png)
 * [Tiny Tapeout GF 0p2](shuttles/ttgf0p2/logic_density.png)
 * [Tiny Tapeout SKY 25b](shuttles/ttsky25b/logic_density.png)
 * [Tiny Tapeout GF 0p1](shuttles/ttgf0p1/logic_density.png)
