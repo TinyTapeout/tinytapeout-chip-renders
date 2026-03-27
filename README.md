@@ -12,13 +12,13 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 ## Full Renders
 
-## Tiny Tapeout GF 0p2
+### Tiny Tapeout GF 0p2
 [![Tiny Tapeout GF 0.2](shuttles/ttgf0p2/full_gds.png)](shuttles/ttgf0p2/full_gds.png)
 
 ### Tiny Tapeout SKY 25b
 [![Tiny Tapeout SKY 25b](shuttles/ttsky25b/full_gds.png)](shuttles/ttsky25b/full_gds.png)
 
-## Tiny Tapeout GF 0p1
+### Tiny Tapeout GF 0p1
 [![Tiny Tapeout GF 0.1](shuttles/ttgf0p1/full_gds.png)](shuttles/ttgf0p1/full_gds.png)
 
 ### Tiny Tapeout SKY 25a
