@@ -12,6 +12,9 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 ## Full Renders
 
+### Tiny Tapeout GF 0p3
+[![Tiny Tapeout GF 0p3](shuttles/ttgf0p3/full_gds.png)](shuttles/ttgf0p3/full_gds.png)
+
 ### Tiny Tapeout GF 26b
 [![Tiny Tapeout GF 26b](shuttles/ttgf26b/full_gds.png)](shuttles/ttgf26b/full_gds.png)
 
@@ -120,6 +123,7 @@ The renders are generated using the [render.py](scripts/render.py) script, which
 
 ## Logic Density Renders
 
+* [Tiny Tapeout GF 0p3](shuttles/ttgf0p3/logic_density.png)
 * [Tiny Tapeout GF 26b](shuttles/ttgf26b/logic_density.png)
 * [Tiny Tapeout GF 26a](shuttles/ttgf26a/logic_density.png)
 * [Tiny Tapeout SKY 26b](shuttles/ttsky26b/logic_density.png)
